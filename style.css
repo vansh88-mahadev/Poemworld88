@@ -1,0 +1,65 @@
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #f4f6f8;
+}
+header {
+  background: #2c3e50;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+nav a {
+  color: #fff;
+  margin: 0 10px;
+  text-decoration: none;
+}
+section {
+  padding: 30px 20px;
+  text-align: center;
+}
+.tabs {
+  margin: 20px 0;
+}
+.tab-button {
+  padding: 10px 20px;
+  margin: 5px;
+  background: #ddd;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.tab-button.active {
+  background: #3498db;
+  color: white;
+}
+.tab-content {
+  display: none;
+}
+.tab-content.active {
+  display: block;
+}
+.poem-card {
+  background: white;
+  margin: 15px auto;
+  padding: 20px;
+  max-width: 700px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+  text-align: left;
+}
+#contact .contact-box {
+  background: #fff;
+  padding: 20px;
+  max-width: 500px;
+  margin: 0 auto;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+footer {
+  background: #2c3e50;
+  color: white;
+  padding: 15px;
+  text-align: center;
+}
