@@ -3,135 +3,141 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Poetry Website</title>
+  <title>Poem Sharing Website</title>
   <style>
     body {
-      font-family: 'Segoe UI', sans-serif;
-      margin: 0;
-      background: #f8f9fa;
-      color: #333;
-    }
-    header {
-      background: linear-gradient(to right, #ff758c, #ff7eb3);
+      font-family: Arial, sans-serif;
+      background: #f0f2f5;
       padding: 20px;
-      text-align: center;
-      color: white;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 2.5rem;
-    }
-    .container {
-      max-width: 900px;
+      max-width: 700px;
       margin: auto;
-      padding: 20px;
     }
-    .poem {
-      background: white;
-      margin: 15px 0;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    h2, h3 {
+      text-align: center;
     }
-    .poem h3 {
-      margin-top: 0;
-      color: #ff4b6e;
-    }
-    .form-section {
-      margin-top: 40px;
-      background: #fff;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
-    textarea {
+    textarea, input {
       width: 100%;
-      height: 100px;
       padding: 10px;
       margin-top: 10px;
-      border-radius: 8px;
+      font-size: 16px;
+      border-radius: 5px;
       border: 1px solid #ccc;
     }
     button {
-      background: #ff4b6e;
-      color: white;
-      padding: 10px 15px;
-      border: none;
-      border-radius: 8px;
       margin-top: 10px;
+      padding: 10px 15px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
       cursor: pointer;
-      font-weight: bold;
+      background: #007bff;
+      color: white;
+      transition: 0.3s;
     }
     button:hover {
-      background: #ff2e52;
+      background: #0056b3;
     }
-    footer {
-      background: #222;
-      color: white;
-      text-align: center;
+    ul {
+      margin-top: 20px;
+      padding: 0;
+    }
+    li {
+      list-style: none;
+      background: #fff;
+      margin-bottom: 15px;
       padding: 15px;
-      margin-top: 40px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      position: relative;
     }
-    footer a {
-      color: #ff7eb3;
-      margin: 0 10px;
-      text-decoration: none;
+    .name {
+      font-size: 12px;
+      color: gray;
+      display: none; /* name hidden for public */
     }
-    footer a:hover {
-      text-decoration: underline;
+    .copy-btn {
+      position: absolute;
+      right: 10px;
+      bottom: 10px;
+      background: #28a745;
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>My Poetry World</h1>
-    <p>Feel the words, feel the soul ✨</p>
-  </header>
 
-  <div class="container">
-    <!-- 10 Poems already written -->
-    <div class="poem"><h3>Poem 1</h3><p>The sun sets with golden light, painting dreams into the night...</p></div>
-    <div class="poem"><h3>Poem 2</h3><p>In the silence of the heart, whispers of love never part...</p></div>
-    <div class="poem"><h3>Poem 3</h3><p>Stars above, shining so free, reminding me of eternity...</p></div>
-    <div class="poem"><h3>Poem 4</h3><p>A gentle breeze, a quiet stream, life is softer than it seems...</p></div>
-    <div class="poem"><h3>Poem 5</h3><p>Every tear tells a story untold, of broken dreams and hearts so cold...</p></div>
-    <div class="poem"><h3>Poem 6</h3><p>Hope is a bird that never dies, it sings beneath the darkest skies...</p></div>
-    <div class="poem"><h3>Poem 7</h3><p>Love is fire, warm and deep, a secret that the soul will keep...</p></div>
-    <div class="poem"><h3>Poem 8</h3><p>The moon smiles, the rivers flow, carrying secrets we may never know...</p></div>
-    <div class="poem"><h3>Poem 9</h3><p>A flower blooms in desert dry, teaching us to reach the sky...</p></div>
-    <div class="poem"><h3>Poem 10</h3><p>Life’s a journey, short yet sweet, every stranger you’re meant to meet...</p></div>
+  <h2>✍️ Share Your Poem</h2>
+  <input type="text" id="nameInput" placeholder="Your Name (only you will see)">
+  <textarea id="poemInput" rows="5" placeholder="Write your poem..."></textarea><br>
+  <button onclick="savePoem()">Save Poem</button>
 
-    <!-- Add Poem Form -->
-    <div class="form-section">
-      <h2>✨ Share Your Poem ✨</h2>
-      <textarea id="poemInput" placeholder="Write your poem here..."></textarea>
-      <button onclick="addPoem()">Add Poem</button>
-    </div>
-  </div>
+  <h3>📖 Poems</h3>
+  <ul id="poemList"></ul>
 
-  <footer>
-    <p>Connect with me:</p>
-    <a href="https://instagram.com/@8vanshcreation" target="_blank">@8vanshcreation</a> |
-    <a href="https://instagram.com/@thedailyvibe_8" target="_blank">Insta 2</a> |
-    <a href="https://instagram.com/yourinsta3" target="_blank">Insta 3</a> |
-    <a href="https://instagram.com/yourinsta4" target="_blank">Insta 4</a> |
-    <a href="mailto: vansh72081@gmail.com">Email Me</a>
-  </footer>
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js"></script>
 
   <script>
-    function addPoem() {
-      let text = document.getElementById("poemInput").value.trim();
-      if (text === "") {
-        alert("Please write something!");
-        return;
-      }
-      let container = document.querySelector(".container");
-      let newPoem = document.createElement("div");
-      newPoem.classList.add("poem");
-      newPoem.innerHTML = "<h3>New Poem</h3><p>" + text + "</p>";
-      container.insertBefore(newPoem, document.querySelector(".form-section"));
+    // ✅ Your Firebase Config
+    const firebaseConfig = {
+      apiKey: "AIzaSyA0-iMDJHX0vwpXi1lUT65QgcBQ4oMfe3I",
+      authDomain: "vanshcreation-poem.firebaseapp.com",
+      projectId: "vanshcreation-poem",
+      storageBucket: "vanshcreation-poem.firebasestorage.app",
+      messagingSenderId: "1031323420580",
+      appId: "1:1031323420580:web:8cd2e955c8d571308ba331",
+      measurementId: "G-E28Z2798DN"
+    };
+
+    // ✅ Initialize Firebase
+    const app = firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    // ✅ Save Poem to Firestore
+    async function savePoem() {
+      let name = document.getElementById("nameInput").value;
+      let poem = document.getElementById("poemInput").value;
+
+      if (poem.trim() === "") return;
+
+      await db.collection("poems").add({
+        name: name,
+        poem: poem,
+        timestamp: new Date()
+      });
+
       document.getElementById("poemInput").value = "";
+      loadPoems();
     }
+
+    // ✅ Load Poems from Firestore
+    async function loadPoems() {
+      let list = document.getElementById("poemList");
+      list.innerHTML = "";
+
+      const querySnapshot = await db.collection("poems").orderBy("timestamp", "desc").get();
+      querySnapshot.forEach(doc => {
+        let data = doc.data();
+
+        let li = document.createElement("li");
+        li.innerHTML = `
+          <p>${data.poem}</p>
+          <p class="name">-${data.name}</p>
+          <button class="copy-btn" onclick="copyPoem('${data.poem.replace(/'/g,"\\'")}')">📋 Copy</button>
+        `;
+        list.appendChild(li);
+      });
+    }
+
+    // ✅ Copy Poem
+    function copyPoem(text) {
+      navigator.clipboard.writeText(text);
+      alert("Poem copied!");
+    }
+
+    // ✅ Load poems on start
+    loadPoems();
   </script>
+
 </body>
 </html>
