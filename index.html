@@ -86,6 +86,72 @@ footer{margin-top:18px;color:var(--muted);font-size:13px;text-align:center}
   gtag('js', new Date());
 
   gtag('config', 'G-E28Z2798DN');
+    .hero {
+  text-align: center;
+  padding: 80px 20px;
+  background: linear-gradient(135deg, var(--bg1), var(--bg2));
+  border-radius: 16px;
+  margin-bottom: 40px;
+  color: #eee;
+}
+.hero h1 {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+.hero p {
+  font-size: 18px;
+  opacity: 0.8;
+}
+.hero .btn {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 24px;
+  background: var(--gold);
+  color: #000;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+.hero .btn:hover {
+  background: #ffd95a;
+}
+
+/* Poem Section */
+.poem-section {
+  text-align: center;
+  margin: 40px 0;
+}
+.poem-section h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: var(--gold);
+}
+.poem-cards {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.poem-card {
+  background: var(--card);
+  padding: 20px;
+  border-radius: 12px;
+  width: 260px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  transition: transform 0.3s, background 0.3s;
+}
+.poem-card:hover {
+  transform: translateY(-6px);
+  background: rgba(255,255,255,0.05);
+}
+.poem-card h3 {
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+.poem-card p {
+  font-size: 14px;
+  color: #ccc;
+}
 </script>
   </style>
 </head>
@@ -105,6 +171,31 @@ footer{margin-top:18px;color:var(--muted);font-size:13px;text-align:center}
     <div class="chip" id="ownerToggleWrap" style="display:none">Owner: <strong id="ownerLabel" style="margin-left:8px;color:var(--gold)"></strong></div>
   </div>
 </header>
+  <!-- Hero Section -->
+<section class="hero">
+  <h1>Welcome to Poem World 🌸</h1>
+  <p>Read, Share & Create Beautiful Poems</p>
+  <a href="#poems" class="btn">Explore Poems</a>
+</section>
+
+<!-- Poems Section -->
+<section id="poems" class="poem-section">
+  <h2>Latest Poems</h2>
+  <div class="poem-cards">
+    <div class="poem-card">
+      <h3>🌿 Nature</h3>
+      <p>A gentle breeze whispers untold stories...</p>
+    </div>
+    <div class="poem-card">
+      <h3>🌙 Night</h3>
+      <p>Stars shine brighter when hearts are heavy...</p>
+    </div>
+    <div class="poem-card">
+      <h3>❤️ Love</h3>
+      <p>Every heartbeat writes a hidden poem...</p>
+    </div>
+  </div>
+</section>
 
 <main>
   <section>
